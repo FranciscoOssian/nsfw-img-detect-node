@@ -37,6 +37,9 @@ app.post("/classify", upload.single("image"), async (req, res) => {
 
     const image = await tf.node.decodeImage(req.file.buffer, 3);
     const predictions = await model.classify(image);
+
+    console.log(predictions);
+    
     image.dispose();
 
     res.json(predictions);
