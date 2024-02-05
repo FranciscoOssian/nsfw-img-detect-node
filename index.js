@@ -4,6 +4,13 @@ const tf = require("@tensorflow/tfjs-node");
 const nsfw = require("nsfwjs");
 
 const app = express();
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // ou especifique o domínio do seu aplicativo React Native
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
 const upload = multer({
   limits: {
     fileSize: 5 * 1024 * 1024, // Limite de 5MB para o tamanho da imagem
